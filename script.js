@@ -33,7 +33,6 @@ function hideSubtasks(event) {
 }
 
 function setupSubtasks() {
-
     var toRemoveElements = getAllSubtasksRows();
 
     var subTaskTitleElement =
