@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Redmine Closed Removed From Subtasks
 // @namespace    https://github.com/extstopcodepls/redmine_closed_substasks_remover
-// @version      0.3
+// @version      0.2
 // @description  Usuwa linki z podzagadnień, które są zamknięte
 // @author       Paweł Borawski
 // @match        https://redmine.x-code.pl/issues/*
@@ -40,7 +40,7 @@ function hide(event) {
     var subTaskTitleElement =
         document.querySelectorAll('#issue_tree > p > strong')[0];
 
-    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - (" + toRemoveElements.length + ") zamkniętych. ";
+    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - " + toRemoveElements.length + " zamkniętych. ";
 
     var showHideElement = document.createElement("a");
     showHideElement.innerHTML = "Pokaż";
