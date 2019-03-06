@@ -8,13 +8,18 @@
 // @grant        none
 // ==/UserScript==
 
-function getAllSubtasksRows() {
+function getAllSubtasks() {
+    return document
+           .querySelectorAll('#issue_tree table.list.issues tr.issue');
+}
+
+function getAllClosedSubtasks() {
      return document
             .querySelectorAll('#issue_tree table.list.issues tr.closed');
 }
 
 function showSubtasks(event) {
-    var toUnblockElements = getAllSubtasksRows();
+    var toUnblockElements = getAllClosedSubtasks();
     toUnblockElements.forEach(function (toUnblockElement) {
         toUnblockElement.style.display = 'table-row';
     });
@@ -23,7 +28,7 @@ function showSubtasks(event) {
 }
 
 function hideSubtasks(event) {
-    var toRemoveElements = getAllSubtasksRows();
+    var toRemoveElements = getAllClosedSubtasks();
     toRemoveElements
         .forEach(function (closedElement) {
             closedElement.style.display = 'none';
@@ -33,12 +38,13 @@ function hideSubtasks(event) {
 }
 
 function setupSubtasks() {
-    var toRemoveElements = getAllSubtasksRows();
+    var allElements = getAllSubtasks();
+    var toRemoveElements = getAllClosedSubtasks();
 
     var subTaskTitleElement =
         document.querySelectorAll('#issue_tree > p > strong')[0];
 
-    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - " + toRemoveElements.length + " zamkniętych. ";
+    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - " + toRemoveElements.length + " / " + allElements.length + " zamkniętych. ";
 
     var showHideElement = document.createElement("a");
     showHideElement.innerHTML = "Pokaż";
@@ -53,13 +59,18 @@ function setupSubtasks() {
         });
 }
 
-function getAllCorrelatedTasksRows() {
+function getAllCorrelatedRows() {
+    return document
+           .querySelectorAll('#relations table.list.issues tr.issue');
+}
+
+function getAllCorrelatedClosedRows() {
      return document
             .querySelectorAll('#relations table.list.issues tr.closed');
 }
 
 function showCorrelatedTasks(event) {
-    var toUnblockElements = getAllCorrelatedTasksRows();
+    var toUnblockElements = getAllCorrelatedClosedRows();
     toUnblockElements.forEach(function (toUnblockElement) {
         toUnblockElement.style.display = 'table-row';
     });
@@ -68,7 +79,7 @@ function showCorrelatedTasks(event) {
 }
 
 function hideCorrelatedTasks(event) {
-    var toRemoveElements = getAllCorrelatedTasksRows();
+    var toRemoveElements = getAllCorrelatedClosedRows();
     toRemoveElements
         .forEach(function (closedElement) {
             closedElement.style.display = 'none';
@@ -78,13 +89,13 @@ function hideCorrelatedTasks(event) {
 }
 
 function setupCorrelatedTasks() {
-
-    var toRemoveElements = getAllCorrelatedTasksRows();
+    var allElements = getAllCorrelatedRows();
+    var toRemoveElements = getAllCorrelatedClosedRows();
 
     var subTaskTitleElement =
         document.querySelectorAll('#relations > p > strong')[0];
 
-    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - " + toRemoveElements.length + " zamkniętych. ";
+    subTaskTitleElement.innerHTML = subTaskTitleElement.innerHTML + " - " + toRemoveElements.length + " / " + allElements.length + " zamkniętych. ";
 
     var showHideElement = document.createElement("a");
     showHideElement.innerHTML = "Pokaż";
