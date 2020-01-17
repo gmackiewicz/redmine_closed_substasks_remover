@@ -5,6 +5,8 @@
 // @description  Usuwa linki z podzagadnień, które są zamknięte
 // @author       Paweł Borawski
 // @match        https://redmine.x-code.pl/issues/*
+// @match        http://redmine.x-code.loc/issues/*
+// @match        http://redmine.x-code.pl/issues/*
 // @grant        none
 // ==/UserScript==
 
